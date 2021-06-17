@@ -22,28 +22,13 @@ public class OrderReceipt {
         this.order = order;
     }
 
-    //Deprecated
-    public String printCustomerName() {
-        return order.getCustomerName();
-    }
-
-    //todo: rename -- Tom
     public String printReceipt() {
         StringBuilder output = new StringBuilder();
-
-        // print headers
         output.append(HEADER);
-
-        // print date, bill no, customer name
-//        output.append("Date - " + order.getDate();
         output.append(order.getCustomerName());
         output.append(order.getCustomerAddress());
-//        output.append(order.getCustomerLoyaltyNumber());
-
-        // prints lineItems
         Amount amount = new Amount(0d, 0d);
         output.append(printAllLineItemInfos(order.getLineItems(), amount));
-
         output.append(printMoney(amount));
         return output.toString();
     }
