@@ -11,6 +11,7 @@ public class OrderReceipt {
     private static final String HEADER = "======Printing Orders======\n";
     private static final char TAB = '\t';
     private static final char NEW_LINE = '\n';
+    private static final double RATE = 0.1;
     private Order order;
 
     public OrderReceipt(Order order) {
@@ -49,7 +50,7 @@ public class OrderReceipt {
             output.append(NEW_LINE);
 
             // calculate sales tax @ rate of 10%
-            double salesTax = lineItem.totalAmount() * .10;
+            double salesTax = lineItem.totalAmount() * RATE;
             totSalesTx += salesTax;
 
             // calculate total amount of lineItem = price * quantity + 10 % sales tax
