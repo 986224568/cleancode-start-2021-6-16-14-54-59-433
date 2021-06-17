@@ -8,21 +8,12 @@ public class DeliveryManager {
     }
 
     public DeliverCenter allocate(){
-        if (getProvince(address.getToAddress()).equals(getProvince(address.getFromAddress()))
-                && getCity(address.getToAddress()).equals(getCity(address.getFromAddress()))){
+        if (address.isSameFromProvinceToProvince() && address.isSameFromCityToCity()) {
             return DeliverCenter.LOCAL;
         }
-        if (getProvince(address.getToAddress()).equals(getProvince(address.getFromAddress()))) {
+        if (address.isSameFromProvinceToProvince()) {
             return DeliverCenter.PROVINCE;
         }
         return DeliverCenter.FOREIGN;
-    }
-
-    private String getCity(String address) {
-        return address.substring(address.indexOf("省") + 1, address.indexOf("市"));
-    }
-
-    private String getProvince(String address) {
-        return address.substring(0, address.indexOf("省"));
     }
 }
