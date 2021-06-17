@@ -44,12 +44,12 @@ public class OrderReceipt {
         Amount amount = new Amount(0d, 0d);
         output.append(printAllLineItemInfos(order.getLineItems(), amount));
 
-        // prints the state tax
-        output.append(SALES_TAX).append(TAB).append(amount.getTotalSalesTax());
-
-        // print total amount
-        output.append(TOTAL_AMOUNT).append(TAB).append(amount.getTotalAmount());
+        output.append(printMoney(amount));
         return output.toString();
+    }
+
+    private String printMoney(Amount amount) {
+        return SALES_TAX + TAB + amount.getTotalSalesTax() + TOTAL_AMOUNT + TAB + amount.getTotalAmount();
     }
 
     private double calculateSalesTax(LineItem lineItem) {
