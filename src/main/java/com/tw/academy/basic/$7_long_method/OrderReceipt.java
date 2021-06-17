@@ -23,14 +23,12 @@ public class OrderReceipt {
     }
 
     public String printReceipt() {
-        StringBuilder output = new StringBuilder();
-        output.append(HEADER);
-        output.append(order.getCustomerName());
-        output.append(order.getCustomerAddress());
         Amount amount = new Amount(0d, 0d);
-        output.append(printAllLineItemInfos(order.getLineItems(), amount));
-        output.append(printMoney(amount));
-        return output.toString();
+        return HEADER +
+                order.getCustomerName() +
+                order.getCustomerAddress() +
+                printAllLineItemInfos(order.getLineItems(), amount) +
+                printMoney(amount);
     }
 
     private String printMoney(Amount amount) {
