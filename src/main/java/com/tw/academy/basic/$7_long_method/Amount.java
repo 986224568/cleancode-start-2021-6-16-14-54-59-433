@@ -24,4 +24,13 @@ public class Amount {
     public void setTotalAmount(double totalAmount) {
         this.totalAmount = totalAmount;
     }
+
+    public void addSalesTax(double salesTax) {
+        this.totalSalesTax += salesTax;
+    }
+
+    public void addAmount(double amount) {
+        this.totalAmount += amount;
+    }
+
 }
