@@ -1,5 +1,7 @@
 package com.tw.academy.basic.$7_long_method;
 
+import java.util.List;
+
 /**
  * This class is a example for bad smell;
  *
@@ -40,21 +42,7 @@ public class OrderReceipt {
 
         // prints lineItems
         Amount amount = new Amount(0d, 0d);
-        for (LineItem lineItem : order.getLineItems()) {
-            output.append(lineItem.getDescription());
-            output.append(TAB);
-            output.append(lineItem.getPrice());
-            output.append(TAB);
-            output.append(lineItem.getQuantity());
-            output.append(TAB);
-            output.append(lineItem.totalAmount());
-            output.append(NEW_LINE);
-
-            // calculate sales tax @ rate of 10%
-            double salesTax = getSalesTax(lineItem);
-            amount.addSalesTax(salesTax);
-            amount.addAmount(calculateSingleItemTotalAmount(lineItem, salesTax));
-        }
+        output.append(printAllLineItemInfos(order.getLineItems(), amount));
 
         // prints the state tax
         output.append(SALES_TAX).append(TAB).append(amount.getTotalSalesTax());
@@ -64,11 +52,35 @@ public class OrderReceipt {
         return output.toString();
     }
 
-    private double getSalesTax(LineItem lineItem) {
+    private double calculateSalesTax(LineItem lineItem) {
         return lineItem.totalAmount() * RATE;
     }
 
     private double calculateSingleItemTotalAmount(LineItem lineItem, double salesTax) {
         return lineItem.totalAmount() + salesTax;
+    }
+
+    private String printAllLineItemInfos(List<LineItem> lineItems, Amount amount) {
+        StringBuilder lineItemInfoBuilder = new StringBuilder();
+        for (LineItem lineItem : lineItems) {
+            lineItemInfoBuilder.append(printLineItem(lineItem));
+
+            double salesTax = calculateSalesTax(lineItem);
+            amount.addSalesTax(salesTax);
+            amount.addAmount(calculateSingleItemTotalAmount(lineItem, salesTax));
+        }
+        return lineItemInfoBuilder.toString();
+    }
+
+
+    private String printLineItem(LineItem lineItem) {
+        return lineItem.getDescription() +
+                TAB +
+                lineItem.getPrice() +
+                TAB +
+                lineItem.getQuantity() +
+                TAB +
+                lineItem.totalAmount() +
+                NEW_LINE;
     }
 }
