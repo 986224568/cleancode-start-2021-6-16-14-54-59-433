@@ -8,6 +8,7 @@ package com.tw.academy.basic.$7_long_method;
  * @since   2018-1-1
  */
 public class OrderReceipt {
+    private static final String HEADER = "======Printing Orders======\n";
     private Order order;
 
     public OrderReceipt(Order order) {
@@ -24,7 +25,7 @@ public class OrderReceipt {
         StringBuilder output = new StringBuilder();
 
         // print headers
-        output.append("======Printing Orders======\n");
+        output.append(HEADER);
 
         // print date, bill no, customer name
 //        output.append("Date - " + order.getDate();
