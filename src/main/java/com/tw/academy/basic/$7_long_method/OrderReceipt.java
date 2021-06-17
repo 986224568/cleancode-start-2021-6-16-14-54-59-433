@@ -12,6 +12,8 @@ public class OrderReceipt {
     private static final char TAB = '\t';
     private static final char NEW_LINE = '\n';
     private static final double RATE = 0.1;
+    private static final String SALES_TAX = "Sales Tax";
+    private static final String TOTAL_AMOUNT = "Total Amount";
     private Order order;
 
     public OrderReceipt(Order order) {
@@ -58,10 +60,10 @@ public class OrderReceipt {
         }
 
         // prints the state tax
-        output.append("Sales Tax").append(TAB).append(totSalesTx);
+        output.append(SALES_TAX).append(TAB).append(totSalesTx);
 
         // print total amount
-        output.append("Total Amount").append(TAB).append(tot);
+        output.append(TOTAL_AMOUNT).append(TAB).append(tot);
         return output.toString();
     }
 }
