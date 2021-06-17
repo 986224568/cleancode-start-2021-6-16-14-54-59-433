@@ -10,6 +10,7 @@ package com.tw.academy.basic.$7_long_method;
 public class OrderReceipt {
     private static final String HEADER = "======Printing Orders======\n";
     private static final char TAB = '\t';
+    private static final char NEW_LINE = '\n';
     private Order order;
 
     public OrderReceipt(Order order) {
@@ -45,7 +46,7 @@ public class OrderReceipt {
             output.append(lineItem.getQuantity());
             output.append(TAB);
             output.append(lineItem.totalAmount());
-            output.append('\n');
+            output.append(NEW_LINE);
 
             // calculate sales tax @ rate of 10%
             double salesTax = lineItem.totalAmount() * .10;
